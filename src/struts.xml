@@ -12,11 +12,34 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-		
-		<action name="login" class="org.apache.struts.login.action.LoginAction" method="execute" >
+	
+			<action name="login" class="org.apache.struts.login.action.LoginAction" method="execute" >
   			<result name="success">/auth.jsp</result>
 		</action>
-		
+		<action name="docscreate" class="org.apache.struts.docs.action.DocsCreateAction" method="execute">
+	  		<result name="success">/docscreate.jsp</result>
+		</action>
+		<action name="docsup" class="org.apache.struts.docs.action.DocsUpAction">
+	    <interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+       		<param name="allowedTypes">text/plain</param>
+       		<param name="maximumSize">10240</param>
+  	    </interceptor-ref> 
+            <interceptor-ref name="params">
+                <param name="excludeParams">guggli\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+ 
+	    <result name="success">/docsup.jsp</result>
+	    <result name="input">/docsup.jsp</result>
+ 
+	</action>
 	</package>
 
 </struts>

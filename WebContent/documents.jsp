@@ -8,9 +8,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dokumentumok</title>
 </head>
-<body>
 
+
+<body>
  <%@ include file='menu.jsp' %>
  <h3>Dokumentumok</h3>
+ <s:label key="userName" />
+<a href="<s:url action='docsup'/>">Dokumentum feltöltése</a><br>
+<a href="<s:url action="docscreate"/>">Dokumentum létrehozás</a><br>
 </body>
 </html>
