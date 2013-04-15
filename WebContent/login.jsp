@@ -23,6 +23,7 @@
  	<s:textfield name='loginInfo.loginPw' label='Jelszó' />
  	<s:submit value="Bejelentkezés"/>
  </s:form>
- 
+
+ <p><a href='register.jsp'>Regisztráció</a></p>
 </body>
 </html>
