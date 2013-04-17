@@ -50,8 +50,10 @@ create table directories(
 dir_id_auto int not null,
 dir_name varchar2(255) not null,
 parent_dir int not null,
+shared_ char(1) check (shared_ in ( 'Y', 'N')),
 constraint dir_id_auto_prikey primary key(dir_id_auto)
 );
+
 
 create table doc_has_dir(
 has_dir_id_auto int not null,
