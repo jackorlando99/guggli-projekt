@@ -3,6 +3,7 @@ package org.apache.struts.docs.action;
 import java.io.File;
 import com.opensymphony.xwork2.ActionSupport;
 
+
 public class DocsUpAction extends ActionSupport{
 
 	/**
@@ -17,9 +18,9 @@ public class DocsUpAction extends ActionSupport{
 		return fileUploadContentType;
 	}
  
-	public void setFileUploadContentType(String fileUploadContentType) {
+	/*public void setFileUploadContentType(String fileUploadContentType) {
 		this.fileUploadContentType = fileUploadContentType;
-	}
+	}*/
  
 	public String getFileUploadFileName() {
 		return fileUploadFileName;

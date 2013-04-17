@@ -13,8 +13,23 @@
 <body>
  <%@ include file='menu.jsp' %>
  <h3>Dokumentumok</h3>
+<!--  <div id="cssmenu"> -->
+<div>
+ <ul>
+<li><a href="<s:url action='docsup'/>">Dokumentum feltöltése</a></li>
+<li><a href="<s:url action="docscreate"/>">Dokumentum létrehozás</a></li>
+ </ul>
+</div>
  <s:label key="userName" />
-<a href="<s:url action='docsup'/>">Dokumentum feltöltése</a><br>
-<a href="<s:url action="docscreate"/>">Dokumentum létrehozás</a><br>
+<dl><dt>User/Főmappa</dt>
+<dd>- Almappád</dd>
+<dd>- Almappád2</dd>
+<dd>Fájl1</dd>
+<dd>Fájl2</dd>
+<dd>Fájl3</dd>
+</dl>
+
+[ <a href="<s:url action="sehovameg"/>">Új mappa</a> ]
+<p>és alapból a rootmappa tartalma majd a kiválaszotott mappán belül vhogy dinamikusan mutassa a tartalmát...(?)
 </body>
 </html>
