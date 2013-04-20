@@ -12,14 +12,9 @@
 <body>
  <%@ include file='menu.jsp' %>
  <h3>Feltöltés</h3>
-<s:form action="resultAction" namespace="/" 
-method="POST" enctype="multipart/form-data">
- 
-<s:file name="fileUpload" label="Válaszd ki a fájlt: " size="40" />
- 
-<s:submit value="mehet" name="submit" />
- 
+<s:form action="doUpload" method="post" enctype="multipart/form-data">
+    <s:file name="upload" label="File"/>
+    <s:submit/>
 </s:form>
-
 </body>
 </html>

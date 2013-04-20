@@ -13,23 +13,31 @@
 <body>
  <%@ include file='menu.jsp' %>
  <h3>Dokumentumok</h3>
+<s:form action="doUpload" method="post" enctype="multipart/form-data">
+    <s:file name="uploadFile" label="Fájl kiválasztása"/>
+    <s:submit value="Mehet"/>
+
+</s:form>
 <!--  <div id="cssmenu"> -->
 <div>
  <ul>
-<li><a href="<s:url action='docsup'/>">Dokumentum feltöltése</a></li>
 <li><a href="<s:url action="docscreate"/>">Dokumentum létrehozás</a></li>
  </ul>
 </div>
- <s:label key="userName" />
-<dl><dt>User/Főmappa</dt>
+
+<dl><dt> <s:bean name="org.apache.struts.docs.action.DocsListsAction" var="personBean" /><s:property value="#personBean.userName" />/Főmappa</dt>
 <dd>- Almappád</dd>
 <dd>- Almappád2</dd>
-<dd>Fájl1</dd>
+<dd><a href="<s:url value="C:/projectSave/proba.html"/>">Fájl1</a></dd>
 <dd>Fájl2</dd>
 <dd>Fájl3</dd>
 </dl>
 
 [ <a href="<s:url action="sehovameg"/>">Új mappa</a> ]
 <p>és alapból a rootmappa tartalma majd a kiválaszotott mappán belül vhogy dinamikusan mutassa a tartalmát...(?)
+
+
+
+
 </body>
 </html>

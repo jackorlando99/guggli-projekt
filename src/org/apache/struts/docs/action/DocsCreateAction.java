@@ -1,6 +1,6 @@
 package org.apache.struts.docs.action;
 
-import org.apache.struts.docs.model.DocsModel;
+//import org.apache.struts.docs.model.DocsModel;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -9,36 +9,40 @@ public class DocsCreateAction extends ActionSupport{
 	/**
 	 * Dokok letrehozasa
 	 */
-	private DocsModel dok;
+	//private DocsModel dok;
 	private static final long serialVersionUID = 1L;
 	private String docName;
-	 
-	public String getDocname() {
+	private String text;
+	 	
+	
+	
+	public String getDocName() {
 		return docName;
 	}
  
-	public void setDocname(String dname) {
+	public void setDocName(String dname) {
 		this.docName = dname;
 	}
  
+
+	public String getText() {
+		return text;
+	}
+ 
+	public void setText(String t) {
+		this.text = t;
+	}
+ 
+	
 	@Override
 	public String execute(){
 		//vmi ide kell? meg nem ertem telejsen
 		//feltoltes class??
+		
+		//
 		return SUCCESS;
 	}
-	
-	public void setDok(DocsModel d){
-		dok = d;
-	}
-	
-	//bekeri a dok nevet egy formban
-	/*if(dok.getNev().lenght()==0){
-	 * addFieldError( "dok.getNev", "nev kell")
-	 * akkor neveó kotelezo
-	 * }
-	 * 
-	 * */
+
 	 
 	
 }

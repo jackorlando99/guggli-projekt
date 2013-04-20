@@ -1,17 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
- 
+ <head>
+<link href="css/cssmenu/menu_assets/styles.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Dokumentum FeltÃ¶ltÃ©s</title>
+</head>
 <body>
-<h1>A feltöltés sikeres volt. Megtekintheted a dokumentumaid között.(???)</h1>
- 
-<h4>
-   Dokumentum neve : <s:property value="fileUploadFileName"/> 
-</h4> 
- 
-
-<h4>
-   Dokumentum helye : <s:property value="fileUpload"/> 
-</h4> 
- 
-</body>
+ <%@ include file='menu.jsp' %>
+<h1>A feltÃ¶ltÃ©s sikeres volt. Megtekintheted a dokumentumaid kÃ¶zÃ¶tt.(???)</h1>
+   Dokumentum: <s:property value="uploadFileFileName"/> <br>
+   TÃ­pusa: <s:property value="uploadFileContentType"/> <br>
+   </body>
 </html>

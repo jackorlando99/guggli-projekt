@@ -14,31 +14,31 @@
 
 <script type="text/javascript">
 tinyMCE.init({
-        mode : "specific_textareas",
-        editor_selector :  "mceEditor" 
-        //         readonly : 1
+    mode : "textareas"
+
 
 });
 </script>
 </head>
 <body>
  <%@ include file='menu.jsp' %>
- <h3>Létrehozás</h3>
- <s:form action="docscreates" namespace="/">
+ <h3>Létrehozás ebbe: Főkönyvtár</h3>
+ <s:form method="post" action="docsresult" namespace="/">
  
  <s:textfield label="Dokumentum neve:" name="docName" />
  
 
                <sjr:tinymce
                         id="richtextTinymceEditor"
+                        name="text"
                         editorLocal="hu"
-                        name="echo"
                         rows="10"
                         cols="80"
                         width="800"
                     value="szöveg helye szöveg helye szöveg helye szöveg helye "
                 />	
-                <s:submit value="Mehet" name="submit" />
+               <s:submit value="Mehet" name="submit" />
                 </s:form>
+                
 </body>
 </html>

@@ -1,12 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
- 
+  <head>
+<link href="css/cssmenu/menu_assets/styles.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Dokumentum létrehozás</title>
+</head>
 <body>
-<h1>Dok feltöltés</h1>
- 
+ <%@ include file='menu.jsp' %>
 <h4>Feltöltött dok neve:<s:property value="docName"/></h4>
-<h4>persze meg nem tolti fel.</h4> 
+<h4><s:property value="text"/></h4> 
  
 </body>
 </html>
