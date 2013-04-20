@@ -10,6 +10,7 @@
  <%@ include file='menu.jsp' %>
 <h4>Feltöltött dok neve:<s:property value="docName"/></h4>
 <h4><s:property value="text"/></h4> 
- 
+<!-- a link vmiert nem nyilik meg, de mint link jo -->
+<a href="C:/projectSave/<s:property value="docName"/>.html" target="_blank">Megtekintés</a>
 </body>
 </html>

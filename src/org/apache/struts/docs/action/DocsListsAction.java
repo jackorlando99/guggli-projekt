@@ -22,8 +22,8 @@ public class DocsListsAction extends ActionSupport{
 	
 	public String execute() {
 		try{		
-			dbc = new DBConn();
-			dbc.connect(); 
+		//	dbc = new DBConn();
+		//	dbc.connect(); 
 			//setUserName(dbc.lekerdezUserName());
 			return NONE;
 		}catch(Exception e){

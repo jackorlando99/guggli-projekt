@@ -2,6 +2,10 @@ package org.apache.struts.docs.action;
 
 //import org.apache.struts.docs.model.DocsModel;
 
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class DocsCreateAction extends ActionSupport{
@@ -36,10 +40,13 @@ public class DocsCreateAction extends ActionSupport{
 	
 	@Override
 	public String execute(){
-		//vmi ide kell? meg nem ertem telejsen
-		//feltoltes class??
-		
-		//
+		try{
+	        String filePath = "C:/projectSave";  //mondjuk erre kikene talani vmit
+	        
+			  File fileToCreate = new File(filePath, this.docName+".html");
+			  FileUtils.writeStringToFile(fileToCreate, this.text);
+			  
+		}catch(Exception e){}
 		return SUCCESS;
 	}
 

@@ -3,6 +3,7 @@ package org.apache.struts.docs.action;
 import java.io.File;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.io.FileUtils;
+import org.apache.struts.dbconn.DBConn;
 
 
 public class DocsUpAction extends ActionSupport{
@@ -14,7 +15,8 @@ public class DocsUpAction extends ActionSupport{
 	private File uploadFile;
     private String uploadFileContentType;
     private String uploadFileFileName;  
- 
+	private DBConn dbc; 
+
     public File getUploadFile() {
         return uploadFile;
     }
@@ -43,7 +45,9 @@ public class DocsUpAction extends ActionSupport{
     	        // meg amit meg kel menteni adatbbe
     	        File fileToCreate = new File(filePath, uploadFileFileName);// Create file name  same as original
     	        FileUtils.copyFile(uploadFile, fileToCreate); // Just copy temp file content tos this file      
-    	 
+    			dbc = new DBConn();
+    				dbc.connect(); 
+    				//setUserName(dbc.lekerdezUserName());
     	        }catch(Exception e)
     	        {
     	            

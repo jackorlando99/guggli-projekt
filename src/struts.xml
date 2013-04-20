@@ -45,6 +45,7 @@
 		               <interceptor-ref name="params"/>
 		                   <interceptor-ref name="validation"/>
 		        <interceptor-ref name="workflow"/>
+		        <result name="none">/index.jsp</result>
 		    <result name="success">/result.jsp</result>
 		</action>
 

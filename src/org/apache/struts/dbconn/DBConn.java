@@ -14,20 +14,26 @@ public class DBConn {
 	{
 		try
 		{
-			DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		    java.sql.Connection con =DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","hori","hori1294");
+			
+			/*DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			c = DriverManager.getConnection(url, "hori", "hori1294");
+			c = DriverManager.getConnection(url, "hori", "hori1294");*/
+			 System.out.println("conn");
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			 System.out.println("HIBAAAAAAAAA");
 		}
 		isLive = true;
 		return true;
 	}
 	
 	public String lekerdezUserName()
-	{
+	{ 
 		if(isLive)
 		{
 			try {
