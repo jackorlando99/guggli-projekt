@@ -5,6 +5,7 @@ package org.apache.struts.docs.action;
 import java.io.File;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts.dbconn.DBConn;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,7 +18,9 @@ public class DocsCreateAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	private String docName;
 	private String text;
-	 	
+	private String docLoc;
+	private DBConn dbc; 
+
 	
 	
 	public String getDocName() {
@@ -41,13 +44,25 @@ public class DocsCreateAction extends ActionSupport{
 	@Override
 	public String execute(){
 		try{
-	        String filePath = "C:/projectSave";  //mondjuk erre kikene talani vmit
-	        
+	        String filePath = "C:/projectSave/";  //mondjuk erre kikene talani vmit
+	  
 			  File fileToCreate = new File(filePath, this.docName+".html");
 			  FileUtils.writeStringToFile(fileToCreate, this.text);
-			  
+			  	dbc = new DBConn();
+				dbc.connect(); 
+			  dbc.docUp(1,getDocName(),filePath+getDocName()+".html");//userID proba
+				  
 		}catch(Exception e){}
 		return SUCCESS;
+	}
+
+	public String getDocLoc() {
+		
+		return docLoc;
+	}
+
+	public void setDocLoc(String docLoc) {
+		this.docLoc = docLoc;
 	}
 
 	 

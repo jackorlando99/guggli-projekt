@@ -5,7 +5,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts.dbconn.DBConn;
 
-
 public class DocsUpAction extends ActionSupport{
 
 	/**
@@ -39,18 +38,17 @@ public class DocsUpAction extends ActionSupport{
     }
      public String execute() {
     	  try{
-    	        String filePath = "C:/projectSave";  // Path where uploaded file will be stored
-    	        System.out.println("Server path:" + filePath); // check your path in console
-    	        //adatbbe menten az filePath+fileName? es majd az lesz a linkben 
-    	        // meg amit meg kel menteni adatbbe
-    	        File fileToCreate = new File(filePath, uploadFileFileName);// Create file name  same as original
-    	        FileUtils.copyFile(uploadFile, fileToCreate); // Just copy temp file content tos this file      
+    	        String filePath = "C:/projectSave"; 
+    	        System.out.println("Server path:" + filePath);
+    	        File fileToCreate = new File(filePath, uploadFileFileName);
+    	        FileUtils.copyFile(uploadFile, fileToCreate);
     			dbc = new DBConn();
     				dbc.connect(); 
-    				//setUserName(dbc.lekerdezUserName());
-    	        }catch(Exception e)
+    				dbc.docUp(1,uploadFileFileName,filePath+uploadFileFileName);
+    				//System.out.println(dbc.lekerdezUserName());
+    	  }catch(Exception e)
     	        {
-    	            
+    	        	System.out.println("NEM: "+e.getMessage());
     	 
     	        }
         return SUCCESS;

@@ -6,7 +6,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class DocsListsAction extends ActionSupport{
 	private DBConn dbc; 
-	private String userName;
+	private String userName="asd";
 	/**
 	 * 
 	 */
@@ -22,9 +22,9 @@ public class DocsListsAction extends ActionSupport{
 	
 	public String execute() {
 		try{		
-		//	dbc = new DBConn();
-		//	dbc.connect(); 
-			//setUserName(dbc.lekerdezUserName());
+			dbc = new DBConn();
+			dbc.connect(); 
+			setUserName(dbc.lekerdezUserName());
 			return NONE;
 		}catch(Exception e){
 

@@ -18,7 +18,7 @@
 		</action>
 
 <action name="documents" class="org.apache.struts.docs.action.DocsListsAction" method="execute">
-
+	  		<result name="success">/documents.jsp</result>
 		</action>
 
   	<!--probalok vmit lehet h meg kell 	<action name="docssLists" class="org.apache.struts.docs.action.DocsCreateAction" method="execute">

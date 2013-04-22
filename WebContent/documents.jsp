@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
+<!-- <META HTTP-EQUIV="Refresh" CONTENT="0;URL=documents.action"> -->
 <link href="css/cssmenu/menu_assets/styles.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dokumentumok</title>
@@ -25,7 +27,8 @@
  </ul>
 </div>
 
-<dl><dt> <s:bean name="org.apache.struts.docs.action.DocsListsAction" var="personBean" /><s:property value="#personBean.userName" />/Főmappa</dt>
+<dl><dt><s:property value="userName"/>
+/Főmappa</dt>
 <dd>- Almappád</dd>
 <dd>- Almappád2</dd>
 <dd><a href="<s:url value="C:/projectSave/proba.html"/>">Fájl1</a></dd>
