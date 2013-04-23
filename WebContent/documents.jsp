@@ -5,7 +5,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
-<!-- <META HTTP-EQUIV="Refresh" CONTENT="0;URL=documents.action"> -->
+<%-- <jsp:forward page="/documents.action" /> --%>
+
+<META HTTP-EQUIV="Refresh" CONTENT="0;URL=documents.action">
 <link href="css/cssmenu/menu_assets/styles.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dokumentumok</title>
@@ -40,6 +42,18 @@
 <p>és alapból a rootmappa tartalma majd a kiválaszotott mappán belül vhogy dinamikusan mutassa a tartalmát...(?)
 
 
+<!-- teszt tablazat -->
+<table cellpadding="0" cellspacing="0" border="2" width="250">
+<tr><td width="50">id</td>
+<td width="50">name</td>
+<td width="50">user_id</td></tr>
+<s:iterator value="userlistlist" var="userlist">
+<tr>
+<td width="50"><s:property value="id"/></td>
+<td width="50"><a href="<s:property value="path"/><s:property value="name"/>.html" target="_blank"><s:property value="name"/></a></td>
+<td width="50"><s:property value="user_id"/></td>
+</tr></s:iterator>
+</table>
 
 
 </body>

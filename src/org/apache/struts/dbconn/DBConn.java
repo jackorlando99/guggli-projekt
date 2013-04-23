@@ -1,5 +1,9 @@
 package org.apache.struts.dbconn;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.struts.docs.model.DocsList;
 
 
 public class DBConn {
@@ -72,9 +76,9 @@ public class DBConn {
 			// doc id auto csak proba: 
 		    String s = "INSERT INTO DOCS (DOC_ID_AUTO, CREATED_AT, UPDATED_AT, DOC_NAME, CONTENT_PATH, USER_ID) VALUES ('6', TO_DATE(CURRENT_DATE, 'RR-MON-DD'), TO_DATE(CURRENT_DATE, 'RR-MON-DD'), ?, ?, ?)";
 		    PreparedStatement ps=c.prepareStatement(s);
-		    	ps.setString(1, string2);
+		    	ps.setString(1, string);
 		    
-		    ps.setString(2, string);
+		    ps.setString(2, string2);
 		    ps.setInt(3, i);
 		    
 		//    ps.executeUpdate();
@@ -93,4 +97,29 @@ public class DBConn {
 		return null; // doc hely lekeres DB
 
 	}*/
+	public List<DocsList> fetch(){
+		try{
+		//Connection con=ConnectionProvider.getConnection();
+		PreparedStatement stmt=c.prepareStatement
+		("select doc_id_auto, doc_name, content_path, user_id  from docs");
+		ResultSet rset=stmt.executeQuery();
+		DocsList docslist;
+		List<DocsList> list=new ArrayList<DocsList>();
+		while(rset.next()){
+			docslist=new DocsList();
+			docslist.setId(rset.getInt(1));
+			docslist.setName(rset.getString(2));
+			docslist.setPath(rset.getString(3));
+			docslist.setUser_id(rset.getInt(4));
+		list.add(docslist);
+		}
+		System.out.println("ok" + list);
+
+		return list; 
+		
+		}catch(Exception e){
+		System.out.println("gaz van "+e);
+		}
+		return null;
+		}
 }
