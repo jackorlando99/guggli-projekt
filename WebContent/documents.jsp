@@ -7,18 +7,50 @@
 <head>
 <%-- <jsp:forward page="/documents.action" /> --%>
 
-<META HTTP-EQUIV="Refresh" CONTENT="0;URL=documents.action">
+<!-- <META HTTP-EQUIV="Refresh" CONTENT="0;URL=documents.action"> -->
 <link href="css/cssmenu/menu_assets/styles.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Dokumentumok</title>
+<title><s:property value="userName"/> dokumentumai</title>
 </head>
 
 
 <body>
  <%@ include file='menu.jsp' %>
- <h3>Dokumentumok</h3>
+ <h3><s:property value="userName"/> dokumentumai</h3>
+
+<!-- teszt tablazat -->
+<table cellpadding="0" cellspacing="0" border="0" width="250">
+<tr>
+<td width="50"></td>
+<td width="50"><s:property value="userName"/>-root/<s:property value="aktDir"/></td>
+<td width="50">Művelet</td></tr>
+<s:iterator value="dirslistlist" var="dirslist">
+<tr>
+<td width="50">DIR</td>
+<td width="50"><a href="majd" target="_blank"><s:property value="name"/></a></td>
+<td width="50"><a href="<s:property value="id"/>">Törlés</a></td>
+</tr></s:iterator>
+<s:iterator value="userlistlist" var="userlist">
+<tr>
+<td width="50">DOC</td>
+<td width="50"><a href="<s:property value="path"/><s:property value="name"/>.html" target="_blank"><s:property value="name"/></a></td>
+<td width="50"><a href="<s:property value="id"/>">Törlés</a></td>
+</tr></s:iterator>
+</table>
+<p>
+Új mappa létrehozása:
+<s:form method="post" action="newdir" namespace="/">
+ 
+ <s:textfield label="Új mappa neve:" name="newDocName" />
+ 
+
+     
+               <s:submit value="Mehet" name="submit" />
+                </s:form>
+                
+               <p>
 <s:form action="doUpload" method="post" enctype="multipart/form-data">
-    <s:file name="uploadFile" label="Fájl kiválasztása"/>
+    <s:file name="uploadFile" label="Dokumentum feltöltése"/>
     <s:submit value="Mehet"/>
 
 </s:form>
@@ -29,31 +61,6 @@
  </ul>
 </div>
 
-<dl><dt><s:property value="userName"/>
-/Főmappa</dt>
-<dd>- Almappád</dd>
-<dd>- Almappád2</dd>
-<dd><a href="<s:url value="C:/projectSave/proba.html"/>">Fájl1</a></dd>
-<dd>Fájl2</dd>
-<dd>Fájl3</dd>
-</dl>
-
-[ <a href="<s:url action="sehovameg"/>">Új mappa</a> ]
-<p>és alapból a rootmappa tartalma majd a kiválaszotott mappán belül vhogy dinamikusan mutassa a tartalmát...(?)
-
-
-<!-- teszt tablazat -->
-<table cellpadding="0" cellspacing="0" border="2" width="250">
-<tr><td width="50">id</td>
-<td width="50">name</td>
-<td width="50">user_id</td></tr>
-<s:iterator value="userlistlist" var="userlist">
-<tr>
-<td width="50"><s:property value="id"/></td>
-<td width="50"><a href="<s:property value="path"/><s:property value="name"/>.html" target="_blank"><s:property value="name"/></a></td>
-<td width="50"><s:property value="user_id"/></td>
-</tr></s:iterator>
-</table>
 
 
 </body>

@@ -50,7 +50,7 @@ public class DocsCreateAction extends ActionSupport{
 			  FileUtils.writeStringToFile(fileToCreate, this.text);
 			  	dbc = new DBConn();
 				dbc.connect(); 
-			  dbc.docUp(1,getDocName(),filePath+getDocName()+".html");//userID proba
+			  dbc.docUp(1,getDocName(),filePath+getDocName()+".html", 1);//userID proba
 				  
 		}catch(Exception e){}
 		return SUCCESS;

@@ -44,7 +44,7 @@ public class DocsUpAction extends ActionSupport{
     	        FileUtils.copyFile(uploadFile, fileToCreate);
     			dbc = new DBConn();
     				dbc.connect(); 
-    				dbc.docUp(1,uploadFileFileName,filePath+uploadFileFileName);
+    				dbc.docUp(1,uploadFileFileName,filePath+uploadFileFileName,1);
     				//System.out.println(dbc.lekerdezUserName());
     	  }catch(Exception e)
     	        {
