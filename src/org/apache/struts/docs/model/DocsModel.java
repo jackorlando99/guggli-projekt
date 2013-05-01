@@ -8,7 +8,9 @@ public class DocsModel {
 	private Date created;
 	private Date update;
 	private String path;
+	private int has_doc_id;
 	private int userID;
+	private String calendar;
 	// private mappaja
 	// tartalma
 	// letrehozoja
@@ -16,6 +18,20 @@ public class DocsModel {
 	//
 	//bekeri a csop
 	
+	public DocsModel(DocsModel doc) {
+		setId(doc.getId());
+		setCreated(doc.getCreated());
+		setUpdate(doc.getUpdate());
+		setNev(doc.getNev());
+		setPath(doc.getPath());
+		setUserID(doc.userID);
+		setHas_doc_id(doc.getHas_doc_id());
+	}
+
+	public DocsModel() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId(){
 		return id;
 	}
@@ -63,6 +79,24 @@ public class DocsModel {
 	public void setUpdate(Date update) {
 		this.update = update;
 	}
+
+	public int getHas_doc_id() {
+		return has_doc_id;
+	}
+
+	public void setHas_doc_id(int has_doc_id) {
+		this.has_doc_id = has_doc_id;
+	}
+
+	public String getCalendar() {
+		return calendar;
+	}
+
+	public void setCalendar(String calendar) {
+		this.calendar = calendar;
+	}
+
+	
 	
 	/*dok kivalaszt id alapjan??
 	 * 

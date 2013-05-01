@@ -38,13 +38,14 @@ public class DocsUpAction extends ActionSupport{
     }
      public String execute() {
     	  try{
-    	        String filePath = "C:/projectSave"; 
+    	        String filePath = "/projectSave/"; 
     	        System.out.println("Server path:" + filePath);
     	        File fileToCreate = new File(filePath, uploadFileFileName);
     	        FileUtils.copyFile(uploadFile, fileToCreate);
     			dbc = new DBConn();
     				dbc.connect(); 
-    				dbc.docUp(1,uploadFileFileName,filePath+uploadFileFileName,1);
+    				//ide kell az 1 helyere a user idje
+    				dbc.docUp(1,uploadFileFileName,filePath+uploadFileFileName,aktDirID());
     				//System.out.println(dbc.lekerdezUserName());
     	  }catch(Exception e)
     	        {
@@ -53,4 +54,8 @@ public class DocsUpAction extends ActionSupport{
     	        }
         return SUCCESS;
      }
+ 	private int aktDirID() {
+		int dir = DocsListsAction.getPID();
+		return dir;
+	}
 }

@@ -13,16 +13,19 @@ public class DocsListsAction extends ActionSupport{
 	private String userName;
 	private DocsList userlist;
 	private String aktDir;
-	
+	private int delID;
 	private List<DocsList> userlistlist;
+	private List<DirsList> sharedirslistlist;
 	private List<DirsList> dirslistlist;
-	private int parentID = 1;
-	private int DirMelyseg = 0;
+	private int parentID;
+	public int DirIDNow;
+	private String parentDirName;
 	private int userID=1;
-
+	private static int pID=1;
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = -7605616524970998589L;
 	
 	public String getUserName() {
@@ -37,17 +40,39 @@ public class DocsListsAction extends ActionSupport{
 		try{		
 			dbc = new DBConn();
 			dbc.connect(); 
-			setUserName(dbc.lekerdezUserName());
+			setUserName(dbc.lekerdezUserName(1));
+			//ez a root szal root mappa id-je kell
+			if(pID==0){
+			int rootDir=dbc.getRootDir(dbc.lekerdezUserName(userID));
+			userlistlist=dbc.fetch(rootDir);
+			dirslistlist=dbc.fetchDirs(rootDir);
+			//a felhasznaloval megosztott dokumentumok listazasa
+			setSharedirslistlist(dbc.fetchShareDirs(userID));
+			pID=rootDir;
+			}else{
+				userlistlist=dbc.fetch(pID);
+				dirslistlist=dbc.fetchDirs(pID);
 
-			userlistlist=dbc.fetch(userID);//egyenlore 1 mert tesztelema mukodest
-			dirslistlist=dbc.fetchDirs(userID);//egyenlore 1 mert tesztelema mukodest
+			}
+
+/*			if(parentID != userID){
+			dirslistlist=dbc.fetchDirs(getpID());//egyenlore 1 mert tesztelema mukodest
 			
+			}else{
+				dirslistlist=dbc.fetchDirs(1);//egyenlore 1 mert tesztelema mukodest
+				
+			}*/
 		}catch(Exception e){
 
 		}
 		return SUCCESS;
 	
 	}
+	private void getDirIDNow(int i) {
+		DirIDNow = i;
+		
+	}
+
 	public DocsList getUserlist() {
 		return userlist;
 		}
@@ -62,12 +87,12 @@ public class DocsListsAction extends ActionSupport{
 		}
 
 		public String getAktDir() {
-			if(DirMelyseg  == 0){
-				DirsLeker(userID);
-			}else{
+			if(parentID != userID){
 			    DirsLeker(parentID );	
+			}else{
+				DirsLeker(userID);
 			}
-			
+		
 			return aktDir;
 		}
 
@@ -77,7 +102,7 @@ public class DocsListsAction extends ActionSupport{
 			
 		  	dbc = new DBConn();
 			dbc.connect(); 
-		  dbc.dirsLeker(parentID);//userID proba
+			dbc.fetchDirs(parentID);
 		
 		}
 
@@ -92,6 +117,43 @@ public class DocsListsAction extends ActionSupport{
 		public void setDirslistlist(List<DirsList> dirslistlist) {
 			this.dirslistlist = dirslistlist;
 		}
+
+		static public int getPID() {
+			return pID;
+		}
+
+		public void setPID(int pID) {
+			this.pID = pID;
+		}
+
+		public String getParentDirName() {
+			dbc = new DBConn();
+			dbc.connect(); 
+			parentDirName = dbc.getDirName(getPID());
+			
+			return parentDirName;
+		}
+
+		public void setParentDirName(String parentDirName) {
+			this.parentDirName = parentDirName;
+		}
+
+		public int getDelID() {
+			return delID;
+		}
+
+		public void setDelID(int delID) {
+			this.delID = delID;
+		}
+
+		public List<DirsList> getSharedirslistlist() {
+			return sharedirslistlist;
+		}
+
+		public void setSharedirslistlist(List<DirsList> sharedirslistlist) {
+			this.sharedirslistlist = sharedirslistlist;
+		}
+
 
 		
 		/*

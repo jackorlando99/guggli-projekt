@@ -6,7 +6,7 @@ public class DirsList {
 	private int id;
 	private String name;
 	private int parentDirID;
-	private boolean shared;
+	private String shared;
 	//private int userID;
 	public int getId() {
 		return id;
@@ -26,11 +26,12 @@ public class DirsList {
 	public void setParentDirID(int parentDirID) {
 		this.parentDirID = parentDirID;
 	}
-	public boolean isShared() {
+	public String getShared() {
 		return shared;
 	}
-	public void setShared(boolean shared) {
+	public void setShared(String shared) {
 		this.shared = shared;
 	}
+
 
 }

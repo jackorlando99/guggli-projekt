@@ -9,4 +9,6 @@
 <body>
  <%@ include file='menu.jsp' %>
 <h4>Mappa létrejött<s:property value="newDocName"/></h4>
+<a href="documents.action">Vissza a dokumentumaimhoz</a>
+
 </body>

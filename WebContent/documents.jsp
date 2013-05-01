@@ -22,26 +22,34 @@
 <table cellpadding="0" cellspacing="0" border="0" width="250">
 <tr>
 <td width="50"></td>
-<td width="50"><s:property value="userName"/>-root/<s:property value="aktDir"/></td>
+<td width="50">Dokumentumok/<s:property value="parentDirName"/></td>
 <td width="50">Művelet</td></tr>
 <s:iterator value="dirslistlist" var="dirslist">
 <tr>
 <td width="50">DIR</td>
-<td width="50"><a href="majd" target="_blank"><s:property value="name"/></a></td>
-<td width="50"><a href="<s:property value="id"/>">Törlés</a></td>
+<td width="50"><a href="documents.action?pID=<s:property value="id"/>"><s:property value="name"/></a></td>
+<td width="50"><a href="docsdelete.action?delDirID=<s:property value="id"/>">Törlés</a></td>
 </tr></s:iterator>
 <s:iterator value="userlistlist" var="userlist">
 <tr>
 <td width="50">DOC</td>
-<td width="50"><a href="<s:property value="path"/><s:property value="name"/>.html" target="_blank"><s:property value="name"/></a></td>
-<td width="50"><a href="<s:property value="id"/>">Törlés</a></td>
+<td width="50"><a href="docsview.action?docID=<s:property value="id"/>"><s:property value="name"/></a></td>
+<td width="50"><a href="docsdelete.action?delDocID=<s:property value="id"/>">Törlés</a></td>
+<td width="50"><a href="docsedit.action?docID=<s:property value="id"/>">Szerk.</a></td>
+</tr></s:iterator>
+<s:iterator value="sharedirslistlist" var="sharedirslist">
+<tr>
+<td width="50"><span style="color:green">DIR</span></td>
+<td width="50"><a href="docsview.action?docID=<s:property value="id"/>"><s:property value="name"/></a></td>
+<td width="50"><span style="color:green">Shared</span></td>
 </tr></s:iterator>
 </table>
+
 <p>
 Új mappa létrehozása:
 <s:form method="post" action="newdir" namespace="/">
  
- <s:textfield label="Új mappa neve:" name="newDocName" />
+ <s:textfield label="Új mappa neve" name="newDocName" />
  
 
      
@@ -60,8 +68,6 @@
 <li><a href="<s:url action="docscreate"/>">Dokumentum létrehozás</a></li>
  </ul>
 </div>
-
-
 
 </body>
 </html>

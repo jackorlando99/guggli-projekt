@@ -21,7 +21,7 @@ public class NewDirAction extends ActionSupport{
    	      
    		  dbc = new DBConn();
    				dbc.connect(); 
-   				dbc.newDir(1,getNewDocName(),dirParent,1);
+   				dbc.newDir(2,getNewDocName(),aktDirID(),1);
    				//System.out.println(dbc.lekerdezUserName());
    	  }catch(Exception e)
    	        {
@@ -30,6 +30,11 @@ public class NewDirAction extends ActionSupport{
    	        }
        return SUCCESS;
     }
+
+	private int aktDirID() {
+		int dir = DocsListsAction.getPID();
+		return dir;
+	}
 
 	public String getNewDocName() {
 		return newDocName;
