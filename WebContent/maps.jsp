@@ -12,5 +12,49 @@
 
  <%@ include file='menu.jsp' %>
  <h3>Térkép</h3>
+ 
+ <form action="${pageContext.request.contextPath}/maps.action" method="post">
+<input type="submit" name="button1" value="<-" />
+<table style="background-color:#FFFFff" width="340" cellpadding="0" cellspacing="0">
+ 	<tr>
+	<td> <input type="submit" name="button1" value="^" /><br>
+    </td>
+		
+	</tr>
+	<tr>
+	
+		<td><img src="maps\szeged\1_1.jpg"></td>
+		<td><img src="<s:property value="mapcel2_4"/>"></td>
+		<td><img src="<s:property value="mapcel3_4"/>"></td>
+		<td><img src="<s:property value="mapcel4_4"/>"></td>
+	</tr>
+	<tr>
+		<td><img src="<s:property value="mapcel1_3"/>"></td>
+		<td><img src="<s:property value="mapcel2_3"/>"></td>
+		<td><img src="<s:property value="mapcel3_3"/>"></td>
+		<td><img src="<s:property value="mapcel4_3"/>"></td>
+	</tr>
+	<tr>
+		<td><img src="<s:property value="mapcel1_2"/>"></td>
+		<td><img src="<s:property value="mapcel2_2"/>"></td>
+		<td><img src="<s:property value="mapcel3_2"/>"></td>
+		<td><img src="<s:property value="mapcel4_2"/>"></td>
+	</tr>
+	<tr>
+		<td><img src="<s:property value="mapcel1_1"/>"></td>
+		<td><img src="<s:property value="mapcel2_1"/>"></td>
+		<td><img src="<s:property value="mapcel3_1"/>"></td>
+		<td><img src="<s:property value="mapcel4_1"/>"></td>
+	</tr>
+	 	<tr>
+	<td> <input type="submit" name="button1" value="V" /><br>
+    </td>
+		
+	</tr>
+</table>
+<input type="submit" name="button1" value="->" />
+</tr>
+</table>
+</form>
 </body>
 </html>

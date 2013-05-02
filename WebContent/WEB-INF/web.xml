@@ -23,6 +23,7 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+<<<<<<< HEAD
     
     <session-config>
     	<session-timeout>30</session-timeout>    	
@@ -38,4 +39,7 @@
 </resource-ref>
     
     
+=======
+
+>>>>>>> d2661dd273876e908a49eeac66739f28a04ca8cf
 </web-app>

@@ -5,6 +5,7 @@
 <struts>
 
 	<constant name="struts.devMode2" value="true" />
+    <constant name="struts.multipart.saveDir" value="C:\projectSave" />
 
 	<package name="guggli_projekt" extends="struts-default">
 	
@@ -28,11 +29,53 @@
 		</action>
   	
 
+<<<<<<< HEAD
 		<action name="docscreate" class="org.apache.struts.docs.action.DocsCreateAction" method="execute">
 			<interceptor-ref name="loginStack"></interceptor-ref>
+=======
+
+
+		<action name="documents" class="org.apache.struts.docs.action.DocsListsAction" method="execute">
+		<param name="pID">0</param>
+	  	<result name="success">/documents.jsp</result>
+	  		
+		</action> 
+
+		<action name="maps" class="org.apache.struts.maps.action.MapsAction" method="execute">
+<!-- 		<param name="pID">0</param> -->
+	  	<result name="success">/maps.jsp</result>
+	  		
+		</action> 
+
+		<action name="newdir" class="org.apache.struts.docs.action.NewDirAction" method="execute">
+	  		<result name="success">/newdirok.jsp</result>
+		</action>
+				
+					<action name="docscreate" class="org.apache.struts.docs.action.DocsCreateAction" method="execute">
+
+		  
+>>>>>>> d2661dd273876e908a49eeac66739f28a04ca8cf
 	  		<result name="success">/docscreate.jsp</result>
 		</action>
+				
+				<action name="docsdelete" class="org.apache.struts.docs.action.DocsDeleteAction" method="execute">
 
+		  	<param name="delDirID">0</param>
+	  		<param name="delDocID">0</param>
+	  	
+	  		<result name="success">/docsdel.jsp</result>
+		</action>
+		
+				
+				<action name="docsview" class="org.apache.struts.docs.action.DocsViewAction" method="execute">
+	  		<param name="docID">0</param>
+	  	
+	  		<result name="success">/docview.jsp</result>
+		</action>		
+				
+				<action name="docsresult" class="org.apache.struts.docs.action.DocsCreateAction" method="execute">
+
+<<<<<<< HEAD
 		<action name="docsup" class="org.apache.struts.docs.action.DocsUpAction">
 				<interceptor-ref name="loginStack"></interceptor-ref>
 	    		<interceptor-ref name="exception"/>
@@ -53,6 +96,26 @@
  
 	   		 <result name="success">/docsup.jsp</result>
 	    		<result name="input">/docsup.jsp</result> 
+=======
+		  
+	  		<result name="success">/docscreateok.jsp</result>
+		</action>
+			<action name="docsedit" class="org.apache.struts.docs.action.DocsEditAction" method="execute">
+	  		<param name="docID">0</param>
+	  		<result name="success">/docscreate.jsp</result>
+		</action>	
+		<action name="doUpload" class="org.apache.struts.docs.action.DocsUpAction">
+		
+		           <interceptor-ref name="basicStack"/>
+		        <interceptor-ref name="fileUpload">
+		            <param name="maximumSize">500000</param>
+		        </interceptor-ref> 
+		               <interceptor-ref name="params"/>
+		                   <interceptor-ref name="validation"/>
+		        <interceptor-ref name="workflow"/>
+		        <result name="none">/index.jsp</result>
+		    <result name="success">/result.jsp</result>
+>>>>>>> d2661dd273876e908a49eeac66739f28a04ca8cf
 		</action>
 
 		<action name="register" class="org.apache.struts.register.RegisterAction" method="execute" >
