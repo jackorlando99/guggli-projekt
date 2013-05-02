@@ -25,6 +25,12 @@
 	  		
 		</action> 
 
+		<action name="maps" class="org.apache.struts.maps.action.MapsAction" method="execute">
+<!-- 		<param name="pID">0</param> -->
+	  	<result name="success">/maps.jsp</result>
+	  		
+		</action> 
+
 		<action name="newdir" class="org.apache.struts.docs.action.NewDirAction" method="execute">
 	  		<result name="success">/newdirok.jsp</result>
 		</action>
