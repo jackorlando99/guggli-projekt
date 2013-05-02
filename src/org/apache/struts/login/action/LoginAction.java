@@ -1,38 +1,103 @@
 package org.apache.struts.login.action;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.struts.login.model.LoginModel;
 
+
 import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.interceptor.SessionAware;
+
+import java.security.MessageDigest;
 import java.util.Map;
 
-public class LoginAction extends ActionSupport {
+
+
+public class LoginAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 123456789L;
 	private LoginModel loginInfo;
 	private Map<String, Object> session;
 	
-	@Override
-	public String execute() throws Exception {
-		return SUCCESS;
+	public  LoginAction(){
+		
+		//session = new HashMap<String, Object>();
 	}
 	
+/*	
+	@Override
+	public String execute() throws Exception {
+		//return SUCCESS;
+	}
+	
+*/	
 	public String loginRegisteredUser(){
+		try{
 		
-		if ( loginInfo.getLoginName().equals("robi") && loginInfo.getLoginPw().equals("titkos") ){
-			session.put("loginId",loginInfo.getLoginName() );
-			return SUCCESS;
+		if ( loginInfo.getPwHashFromDb( loginInfo.getLoginName() ) ){
+			
+			String pwhash = loginInfo.getPwHash();
+			
+			
+			byte[] inputPwMd5 = this.md5Encode(loginInfo.getLoginPw());
+			String inputPwHash = this.base64Encode(inputPwMd5);
+			
+			if ( inputPwHash.equals(pwhash) ){
+				
+				session.put("loginId", loginInfo.getLoginName());
+				session.put("logined","true");
+				return SUCCESS;
+			}	
+			else {
+				
+				return LOGIN;
+				
+			}	
+			
+			
 		}
+			
+		
+		
 		else{
 			addActionError("A felhasználónév vagy jelszó helytelen");
 			return LOGIN;
 		}
 			
+		}
+		catch(Exception e){
+			
+			return LOGIN;
+		}
+	}
+	
+	public String base64Encode(byte[] pwmd5) {
+
+		return Base64.encodeBase64String(pwmd5);
+	}
+	
+	public byte[] md5Encode(String pw) {
+
+		try {
+
+			MessageDigest md5 = MessageDigest.getInstance("MD5");
+			byte[] pwByte = pw.getBytes("UTF-8");
+			byte[] md5_byte = md5.digest(pwByte);
+			return md5_byte;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String logined(){
 		
+		return SUCCESS;
 	}
 	
 	public String logOut(){
 		
 		session.remove("loginId");
+		session.remove("logined");
 		addActionMessage("Sikeresen kijelentkeztél");
 		return LOGIN;
 	}
@@ -44,7 +109,7 @@ public class LoginAction extends ActionSupport {
 	
 	public void setSession( Map<String,Object> map ){
 		
-		session = map;
+		this.session = map;
 	}
 	
 	public LoginModel getLoginInfo(){
@@ -57,13 +122,10 @@ public class LoginAction extends ActionSupport {
 		loginInfo = login;
 	}
 	
-	public String getAuthInfo(){
+	
+	public String getLoginedUser(){
 		
-		if ( loginInfo.getLoginName().equals("robi") && loginInfo.getLoginPw().equals("titkos") )
-			return "Sikeres bejelentkezés";
-		else
-			return "Rossz felhasználónév vagy jelszó"; 
-					
+		return (String) session.get("loginId");
 	}
 	
 	

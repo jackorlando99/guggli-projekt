@@ -2,20 +2,47 @@
 
 <div id="cssmenu">
  <ul>
+<s:if test="#session['logined'] == 'true' " >
 <% 
-    String[] menuElemek = { "Naptár", "Dokumentumok", "Csoportok", "Térkép", "Bejelentkezés" };
-	String[] menuLinkek = { "calendar.jsp","documents.action","groups.jsp","maps.action","login.jsp" };
+	
+    String[] menuElemek = { "Naptár", "Dokumentumok", "Csoportok", "Térkép" };
+	String[] menuLinkek = { "calendar.jsp","documents.jsp","groups.jsp","maps.jsp" };
     for (int i=0; i< menuElemek.length;i++)
 	 out.println("<li><a href='" + menuLinkek[i] + "'><span>" + menuElemek[i] +"</span></a></li>");    
 %>
-<%--! <s:if test="#session.logged_in == 'true' "> --%>
-	<%--! out.println("<li> <a href='#'> <span id=login_name> Bejelentkezve mint </span></a> </li> <li> <a href='#'> <span id=logout>Kijelentkezés</span> </a> </li>"); --%>
-<%-- </s:if> --%> 
+</s:if> 
+
+<s:if test="#session['logined'] != 'true' " >
+<% 
+	
+    String[] menuElemek = { "Térkép" };
+	String[] menuLinkek = { "maps.jsp" };
+    for (int i=0; i< menuElemek.length;i++)
+	 out.println("<li><a href='" + menuLinkek[i] + "'><span>" + menuElemek[i] +"</span></a></li>");    
+%>
+</s:if>
+ 
+<s:if test="#session['logined'] != 'true' " >
+<li> 
+	<a href="login.jsp">
+		<span id='login'>Bejelentkezés</span>
+	</a>			  
+</li>	
+</s:if> 
+<s:if test="#session['logined'] == 'true' " > 
 <li>
-<a href='#'> <span id='login_name'> Bejelentkezve mint <s:property value="%{#session['loginId]}" /> </span></a>
+	<a href="<s:url action='userinfo' />" > 
+		<span id='login_name'> Bejelentkezve mint: 
+			<s:property value="%{#session['fullName']}" />
+		</span>
+	</a>
 </li>
 <li>
-<a href="<s:url action='logOut' />"><span>Kijelentkezés</span></a>
+<a href="<s:url action='logout' />"><span id='logout'>Kijelentkezés</span></a>
 </li>
- </ul>
+</s:if>
+
+
+
+</ul>
 </div>

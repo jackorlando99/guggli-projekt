@@ -6,19 +6,14 @@
 <head>
 <link href="css/cssmenu/menu_assets/styles.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Autentikálás</title>
+<title>Felhasználói információk</title>
 </head>
 <body>
 
  <%@ include file='menu.jsp' %>
  
- <s:if test="#session['logined'] == 'true' ">
- <span id='welcome'> Sikeres bejelentkezés</span>
- </s:if>
- 
- <s:if test="#session['logined'] != 'true' ">
- <span id='welcome'> Nem vagy bejelentkezve</span>
- </s:if>
- 
+ <br/><span id='login_name'> Felhasználónév: <s:property value="userName" /> </span>
+ <br/><span id='full_name'> Teljes név: <s:property value="fullName" /> </span>
+ <br/><span id='email'> Email: <s:property value="email" /> </span> 
 </body>
 </html>

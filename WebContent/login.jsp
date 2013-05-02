@@ -24,7 +24,8 @@
  	<s:submit value="Bejelentkezés"/>
  </s:form>
  
- <s:div id="errormessage"><s:property value="errormessage" /></s:div>
+ <div id="actionerror"><s:actionerror /></div>
+ <div id="actionmessage"><s:actionmessage /></div>
 
  <p><a href='register.jsp'>Regisztráció</a></p>
 </body>

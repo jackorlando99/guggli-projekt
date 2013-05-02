@@ -2,6 +2,7 @@ package org.apache.struts.login.interceptor;
 
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.opensymphony.xwork2.ActionInvocation;
+
 import java.util.Map;
 
 public class LoginInterceptor implements Interceptor {
@@ -20,14 +21,14 @@ public class LoginInterceptor implements Interceptor {
 	
 	@Override
 	public String intercept (ActionInvocation invocation) throws Exception{
-		Map<String,Object> session = invocation.getInvocationContext().getSession();
+		Map<String,Object> sessionAttributes = invocation.getInvocationContext().getSession();
 		
-		if ( session == null || session.get("loginId") == null ){
+		if ( sessionAttributes == null || sessionAttributes.get("loginId") == null ){
 			
 			return "login";
 		}
 		else {
-			if ( ! ((String) session.get("loginId")).equals(null) ){
+			if ( ! ((String) sessionAttributes.get("loginId")).equals(null) ){
 				return invocation.invoke();
 			}
 			else
