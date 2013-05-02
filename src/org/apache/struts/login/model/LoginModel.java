@@ -1,8 +1,10 @@
 package org.apache.struts.login.model;
 
 public class LoginModel {
+
 	private String loginName;
 	private String loginPw;
+	private String errormessage;
 	
 	public LoginModel(){
 		
@@ -29,4 +31,10 @@ public class LoginModel {
 		
 		return loginPw;
 	}
+	public String getErrormessage() {
+        return errormessage;
+    }
+    public void setErrormessage(String errormessage) {
+        this.errormessage = errormessage;
+    }
 }

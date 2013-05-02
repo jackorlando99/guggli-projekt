@@ -20,9 +20,11 @@
  
  <s:form action="login">
  	<s:textfield name='loginInfo.loginName' label='Felhasználónév' />
- 	<s:textfield name='loginInfo.loginPw' label='Jelszó' />
+ 	<s:password name='loginInfo.loginPw' label='Jelszó' />
  	<s:submit value="Bejelentkezés"/>
  </s:form>
+ 
+ <s:div id="errormessage"><s:property value="errormessage" /></s:div>
 
  <p><a href='register.jsp'>Regisztráció</a></p>
 </body>

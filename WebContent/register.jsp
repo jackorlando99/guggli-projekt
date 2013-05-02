@@ -23,8 +23,8 @@
  	<s:textfield name='userReg.loginFname' label='Keresztnév' />
  	<s:textfield name='userReg.loginName' label='Felhasználónév' />
  	<s:textfield name='userReg.loginEmail' label='Email' />
- 	<s:textfield name='userReg.loginPw' label='Jelszó' />
- 	<s:textfield name='userReg.loginPw2' label='Jelszó ismét' />
+ 	<s:password name='userReg.loginPw' label='Jelszó' />
+ 	<s:password name='userReg.loginPw2' label='Jelszó ismét' />
  	<s:submit value="Regisztráció"/>
  </s:form>
  

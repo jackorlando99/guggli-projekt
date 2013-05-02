@@ -7,21 +7,34 @@
 	<constant name="struts.devMode2" value="true" />
 
 	<package name="guggli_projekt" extends="struts-default">
+	
+	<interceptors>
+		<interceptor name="loginInterceptor" class="org.apache.struts.login.interceptor.LoginInterceptor"></interceptor>
+		<interceptor-stack name="loginStack">
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</interceptor-stack>
+	</interceptors>
+	
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		
+		<!-- login action -->
 
-		<action name="index">
-			<result>/index.jsp</result>
+		<action name="login" class="org.apache.struts.login.action.LoginAction" method="loginRegisteredUser">
+			<result name="success">/auth.jsp</result>
+			<result name="login">/login.jsp</result>
 		</action>
   	
-		<action name="login" class="org.apache.struts.login.action.LoginAction" method="execute" >
-  			<result name="success">/auth.jsp</result>
-		</action>
 
-  
 		<action name="docscreate" class="org.apache.struts.docs.action.DocsCreateAction" method="execute">
+			<interceptor-ref name="loginStack"></interceptor-ref>
 	  		<result name="success">/docscreate.jsp</result>
 		</action>
 
 		<action name="docsup" class="org.apache.struts.docs.action.DocsUpAction">
+				<interceptor-ref name="loginStack"></interceptor-ref>
 	    		<interceptor-ref name="exception"/>
             		<interceptor-ref name="i18n"/>
             		<interceptor-ref name="fileUpload">
@@ -48,7 +61,10 @@
   			<result name="input">/register.jsp</result>
 		</action>
 
-
+		<action name="logOut" class="org.apache.struts.login.LoginAction" method="logOut">
+			<result name="success"> /login.jsp </result>
+		</action>
+			
 	</package>
 
 </struts>
