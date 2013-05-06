@@ -27,19 +27,20 @@ String selected_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
  <hr/>
  
 <div id="new_note_form"> 
- <form action="newnote">
+ <form action="note.action">
   <div id="note_title">	
  	<label>Feljegyzés neve:</label><input type="text" name='note.title' />
   </div>
   <div id="note_date">	
-    <label> Dátum: </label> <input type="text" name="selected_date" value="<%= selected_date  %>"   readonly /><br>
+    <label> Dátum: </label> <input type="text" name="note.createdAt" value="<%= selected_date  %>"   readonly /><br>
    </div> 
+   
+  
     
    <div id="note_privacy"> 
     <label>láthatóság:</label>
-   	<input type="radio" name="privacy" value="private" />privát
-   	<input type="radio" name="privacy" value="public" />publikus
-   	<input type="radio" name="privacy" value="group" />csoportos<br>
+   	<input type="radio" name="privacy" value="private" name="note.privacy"/>privát
+   	<input type="radio" name="privacy" value="group" name="note.privacy"/>csoportos<br>
    </div>
    <div id="note_text">	 
     <label>Feljegyzés:</label><br> 
@@ -50,6 +51,9 @@ String selected_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
    </div>	
  </form> 
 </div> 
+
+<div id="actionerror"><s:actionerror /></div>
+<div id="actionmessage"><s:actionmessage /></div>
  
 </body>
 </html>

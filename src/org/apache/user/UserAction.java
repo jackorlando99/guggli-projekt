@@ -19,12 +19,18 @@ public class UserAction extends ActionSupport implements SessionAware {
 	public String execute(){
 		
 		if ( userModel == null ){
-			userModel = new UserModel( (String) session.get("loginId") );
+			userModel = new UserModel( (String) session.get("userName") );
 			session.put("fullName",getFullName());
+			session.put("userId",getUserId());
+			session.put("email",getEmail());
 		}	
 		return SUCCESS;
 	}
 	
+	public int getUserId(){
+		
+		return userModel.getUserId();
+	}
 	public String getUserName(){
 		return userModel.getUserName();
 	}

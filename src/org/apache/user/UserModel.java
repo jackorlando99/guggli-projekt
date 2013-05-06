@@ -16,12 +16,13 @@ public class UserModel{
 	private String email;
 	private String userName;
 	private String errorMessage;
+	private int userId;
 
 	
-	public UserModel(String userId){
+	public UserModel(String username){
 		
 
-		userName = userId;
+		userName = new String(username);
 		
 		try{
 			DbManager dbman = new DbManager();
@@ -30,7 +31,7 @@ public class UserModel{
 			ResultSet rs;
 			
 			if ( c != null){
-				stmt = c.prepareStatement("Select last_name,first_name,email from users where user_name = ?");
+				stmt = c.prepareStatement("Select last_name,first_name,email,user_id_auto from users where user_name = ?");
 				stmt.setString(1, userName);
 				rs = stmt.executeQuery();
 			
@@ -38,6 +39,7 @@ public class UserModel{
 				
 					fullName = rs.getString(1) + " " + rs.getString(2);
 					email = rs.getString(3);
+					userId = rs.getInt(4);
 				}
 			
 			dbman.disconnect(c);
@@ -64,6 +66,10 @@ public class UserModel{
 	public String getUserName(){
 	
 		return userName;
+	}
+	
+	public int getUserId(){
+		return userId;
 	}
 	
 	public void setErrorMessage(String msg){

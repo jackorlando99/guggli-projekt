@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.struts.docs.model.DirsList;
 import org.apache.struts.docs.model.DocsList;
 import org.apache.struts.docs.model.DocsModel;
+import org.apache.struts.maps.action.PlacesModel;
+import org.apache.struts.maps.model.CellsModel;
 
 
 public class DBConn {
@@ -187,7 +189,45 @@ public class DBConn {
 			}
 			return null;
 			}
+	
+	public List<PlacesModel> fetchPlaces(int id) {
+		
+		try {
+			String selectSQL = "SELECT * FROM places WHERE map_cell_id=?";
+			PreparedStatement preparedStatement = c.prepareStatement(selectSQL);
+			
+			preparedStatement.setInt(1,id);
+			
+			ResultSet rset = preparedStatement.executeQuery();
+			
+			PlacesModel placeslist;
+			List<PlacesModel> list=new ArrayList<PlacesModel>();
+			while(rset.next()){
+				placeslist=new PlacesModel();
+				placeslist.setId(rset.getInt(1));
+				placeslist.setName(rset.getString(2));
+				placeslist.setAddress(rset.getString(3));
+				placeslist.setPhone(rset.getString(4));
+				placeslist.setPlaceType(rset.getString(5));
+				placeslist.setComment(rset.getString(6));
+				placeslist.setCoordX(rset.getInt(7));
+				placeslist.setCoordY(rset.getInt(8));
+				placeslist.setMapCellID(rset.getInt(9));
 
+			list.add(placeslist);
+			
+			}
+			
+			
+			return list;
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void newDir(int i, String dirName, int dirParent, int j) {
 		try {
 		// doc id auto csak proba: 
@@ -323,7 +363,7 @@ public class DBConn {
 		    		    
 		//    ps.executeUpdate();
 		    ps.executeQuery();
-		    System.out.println(s);
+		    
 		    c.commit();
 		
 		   
@@ -336,6 +376,117 @@ public class DBConn {
 			    System.out.println("gazvan"+e);
 			}
 	}
+
+	public String getMapCell(int map, int x, int y) {
+
+		try {
+			Statement stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT cell_img_path FROM map_has_cells INNER JOIN cells ON cells.cell_id_auto=map_has_cells.cell_id WHERE cells.code='"+x+"_"+y+"'"+" AND map_has_cells.map_id="+map);
+
+			if (rs.next()){
+				String asd =  rs.getString(1);
+				stmt.close();
+				return asd;
+			}
+			else
+				return "";
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return " ";
+	}
+
+	public CellsModel[] getMapArr(int map, int x, int y) {
+		
+		CellsModel[] array = new CellsModel[4];
+		int t = 0;
+		int n = 0;
+		try {
+			String selectSQL = "SELECT cell_id, cell_img_path FROM map_has_cells INNER JOIN cells ON cells.cell_id_auto=map_has_cells.cell_id WHERE cells.code=? OR cells.code=? OR cells.code=? OR cells.code=? AND map_has_cells.map_id=1";
+			PreparedStatement preparedStatement = c.prepareStatement(selectSQL);
+			System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS: "+ n);
+			for(int i=1; i<=4; i++){
+			preparedStatement.setString(i,String.valueOf(x+n)+"_"+String.valueOf(y));
+			n++;
+
+			System.out.println("SSSSSSSSSSSS: "+ n);
+			}
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()){
+				array[t]= new CellsModel(rs.getInt("cell_id"),rs.getString("cell_img_path"));
+				System.out.println("asdddddddddd "+ array[t].getPath());
+				t++;
+			}
+		
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return array;
+	}
+
+	public CellsModel getCella(int id) {
+
+		CellsModel cella = null;
+		try {
+			String selectSQL = "SELECT cell_img_path FROM map_has_cells WHERE cell_id=?";
+			PreparedStatement preparedStatement = c.prepareStatement(selectSQL);
+			preparedStatement.setInt(1,id);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()){
+				cella = new CellsModel(id,rs.getString("cell_img_path"));
+			}
+		
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return cella;
+	}
+
+	public void newPlace(String newName, String newAddress, String newPhone,
+			String newPlaceType, String newComment, int newCoordX,
+			int newCoordY, int mapCellID) {
+		try {
+			// doc id auto csak proba: 
+			String s = "INSERT INTO PLACES (NAME_, ADDRESS, PHONE, PLACE_TYPE, COMMENT_, COORD_X, COORD_Y, MAP_CELL_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement ps = c.prepareStatement(s);
+		
+			ps.setString(1, newName);
+			ps.setString(2, newAddress);
+			ps.setString(3, newPhone);
+			ps.setString(4, newPlaceType);
+			ps.setString(5, newComment);
+			ps.setInt(6, newCoordX);
+			ps.setInt(7, newCoordY);
+			ps.setInt(8, mapCellID);
+		    
+		    c.commit();
+
+		    ps.executeQuery();
+			   
+		   
+		    c.commit();
+		    
+		        ps.close();
+			
+			  } catch (SQLException e) {
+					e.printStackTrace();
+
+				    System.out.println("gazvan"+e);
+				}
+	}
+
+
+	
+	
 	
 
 }

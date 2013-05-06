@@ -50,7 +50,7 @@ public class DocsCreateAction extends ActionSupport{
 	public String execute(){
 
 		try{
-	        String filePath = new File("saves").getAbsolutePath(); //elvileg megkeresi az eclipse mappajat es oda menti a saves mappába
+	        String filePath = new File("projectSave").getAbsolutePath(); //elvileg megkeresi az eclipse mappajat es oda menti a saves mappába
 	        // csak kikene ra tallani vmi mast, mas gepen mashova menti... es mas OSen is...
 	  
 			  File fileToCreate = new File(filePath, this.docName+".html");

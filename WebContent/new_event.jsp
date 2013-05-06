@@ -25,14 +25,16 @@ String selected_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
  <hr/>
  
 <div id="new_event_form"> 
- <form action="newevent">
+ <form action="event.action">
   <div id="event_title">	
  	<label>Esemény neve:</label><input type="text" name='event.title' />
   </div>
   <div id="event_date">	
     <label> Dátum: </label> <input type="text" name="selected_date" value="<%= selected_date %>" />
    </div> 
-  <div id="event_time" >
+  <div id="event_starts" >
+  
+  	<label>Esemény kezdete:</label>
   	<select>
   		<% 
   		for (int i=0;i<=24;i++)
@@ -53,11 +55,43 @@ String selected_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
 	
   
   </div>
+   
+   <div id="event_ends" >
+  
+  	<label>Esemény vége:</label>
+  	<select>
+  		<% 
+  		for (int i=0;i<=24;i++)
+  			out.print( "<option value='hour'>" + i + "</option>" );
+  		%>
+	</select>
+	<label>:</label>
+	<select>
+		
+  		<%  		
+  		for (int i=0;i<=9;i++)
+  			out.print( "<option value='minute'>0" + i + "</option>" );
+  		
+  		for (int i=10;i<=60;i++)
+  			out.print( "<option value='minute'>" + i + "</option>" );
+  		%>
+	</select><br>
+	
+  
+  </div>
+  
+    <div id="place">	
+    <label> Helyszín: </label>
+   
+    <select>
+    <option value="nincs">nincs</option>
+    
+    </select><br>
+   </div>
     
    <div id="event_privacy"> 
     <label>láthatóság:</label>
    	<input type="radio" name="privacy" value="private" />privát
-   	<input type="radio" name="privacy" value="public" />publikus
    	<input type="radio" name="privacy" value="group" />csoportos<br>
    </div>
    <div id="event_text">	 

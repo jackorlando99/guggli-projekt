@@ -43,7 +43,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			
 			if ( inputPwHash.equals(pwhash) ){
 				
-				session.put("loginId", loginInfo.getLoginName());
+				session.put("userName", loginInfo.getLoginName());
 				session.put("logined","true");
 				return SUCCESS;
 			}	
@@ -96,8 +96,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	
 	public String logOut(){
 		
-		session.remove("loginId");
+		session.remove("userName");
+		session.remove("userId");
+		session.remove("email");
 		session.remove("logined");
+		session.remove("fullName");
 		addActionMessage("Sikeresen kijelentkeztél");
 		return LOGIN;
 	}
@@ -125,7 +128,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	
 	public String getLoginedUser(){
 		
-		return (String) session.get("loginId");
+		return (String) session.get("userName");
 	}
 	
 	

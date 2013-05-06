@@ -13,6 +13,7 @@
  <%@ include file='menu.jsp' %>
  
  <br/><span id='login_name'> Felhasználónév: <s:property value="userName" /> </span>
+ <br/><span id='login_name'> UserId: <s:property value="userId" /> </span>
  <br/><span id='full_name'> Teljes név: <s:property value="fullName" /> </span>
  <br/><span id='email'> Email: <s:property value="email" /> </span> 
 </body>

@@ -144,6 +144,43 @@
 			<result name="success">/userinfo.jsp</result>	
 			<result name="login">/login.jsp</result>
 		</action>
+		
+		
+		<!-- maps -->
+
+	
+		<action name="maps" class="org.apache.struts.maps.action.MapsAction" method="execute">
+ 		<param name="x">1</param>
+ 		<param name="y">1</param>
+	  	<result name="success">/maps.jsp</result>
+		</action> 
+		
+		<action name="celldetails" class="org.apache.struts.maps.action.CellDetailsAction" method="execute">
+ 		<param name="id">0</param>
+ 		<param name="x">0</param>
+ 		<param name="y">0</param>
+	  	<result name="success">/celldetails.jsp</result>
+	  		
+		</action> 
+		
+		<action name="celladd" class="org.apache.struts.maps.action.CellAddAction" method="execute">
+ 		<param name="id">0</param>
+	  	<result name="success">/celladd.jsp</result>
+	  		
+		</action> 
+		
+			<action name="celladdform" class="org.apache.struts.maps.action.CellAddFormAction" method="execute">
+ 		<param name="id">0</param>
+ 		<param name="MapCellID">0</param>
+	  	<result name="success">/newplaceok.jsp</result>
+	  		
+		</action>
+		
+		<!-- calendar -->
+        
+        <action name="note" class="org.apache.struts.calendar.action.newNoteAction" >
+        	<result name="success">/new_note.jsp</result>
+        </action>
         
     </package>
 
