@@ -22,7 +22,7 @@ public class UserModel{
 	public UserModel(String username){
 		
 
-		userName = new String(username);
+		userName = username;
 		
 		try{
 			DbManager dbman = new DbManager();
@@ -32,7 +32,7 @@ public class UserModel{
 			
 			if ( c != null){
 				stmt = c.prepareStatement("Select last_name,first_name,email,user_id_auto from users where user_name = ?");
-				stmt.setString(1, userName);
+				stmt.setString(1, username);
 				rs = stmt.executeQuery();
 			
 				if ( rs.next() ){

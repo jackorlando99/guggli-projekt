@@ -29,22 +29,22 @@ String selected_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
 <div id="new_note_form"> 
  <form action="note.action">
   <div id="note_title">	
- 	<label>Feljegyzés neve:</label><input type="text" name='note.title' />
+ 	<label>Feljegyzés neve:</label><input type="text" name='title' />
   </div>
   <div id="note_date">	
-    <label> Dátum: </label> <input type="text" name="note.createdAt" value="<%= selected_date  %>"   readonly /><br>
+    <label> Dátum: </label> <input type="text" name="createdAt" value="<%= selected_date  %>"   readonly /><br>
    </div> 
    
   
     
    <div id="note_privacy"> 
     <label>láthatóság:</label>
-   	<input type="radio" name="privacy" value="private" name="note.privacy"/>privát
-   	<input type="radio" name="privacy" value="group" name="note.privacy"/>csoportos<br>
+   	<input type="radio" name="privacy" value="private" name="privacy" checked />privát
+   	<input type="radio" name="privacy" value="group" name="privacy"/>csoportos<br>
    </div>
    <div id="note_text">	 
     <label>Feljegyzés:</label><br> 
-	<textarea name="note.text" cols="30" rows="8"></textarea>
+	<textarea name="text" cols="30" rows="8" maxlength="4000" ></textarea>
    </div>
    <div id="note_btn">	 	
  	<input type="submit" value="Mentés"/>
@@ -54,6 +54,8 @@ String selected_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
 <div id="actionerror"><s:actionerror /></div>
 <div id="actionmessage"><s:actionmessage /></div>
+
+<s:property value="noteModel" />
  
 </body>
 </html>

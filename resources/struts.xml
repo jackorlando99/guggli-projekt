@@ -66,11 +66,14 @@
 		</action>
 
 		<action name="documents" class="org.apache.struts.docs.action.DocsListsAction" method="execute">
+		    <interceptor-ref name="loginStack"></interceptor-ref>
 			<param name="pID">0</param>
-	  		<result name="success">/documents.jsp</result>	  		
+	  		<result name="success">/documents.jsp</result>
+	  		<result name="login">login.jsp</result>	  		
 		</action> 
 
 		<action name="newdir" class="org.apache.struts.docs.action.NewDirAction" method="execute">
+		<interceptor-ref name="loginStack"></interceptor-ref>
 	  		<result name="success">/newdirok.jsp</result>
 		</action>
 
@@ -178,9 +181,20 @@
 		
 		<!-- calendar -->
         
-        <action name="note" class="org.apache.struts.calendar.action.newNoteAction" >
+        <action name="note" class="org.apache.struts.calendar.newNoteAction" >
+        	<interceptor-ref name="loginStack"></interceptor-ref>
         	<result name="success">/new_note.jsp</result>
+        	<result name="login">login.jsp</result>
+        	<param name="title">null</param>
+        	<param name="text">null</param>
+        	
         </action>
+        
+        <action name="calendarView" class="org.apache.struts.calendar.CalendarViewAction" method="renderCalendar">
+        	<interceptor-ref name="loginStack"></interceptor-ref>
+        	<result name="success">/calendar2.jsp</result>
+        	<result name="login">/login.jsp</result>
+        </action>	
         
     </package>
 

@@ -26,10 +26,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
 /*	
 	@Override
 	public String execute() throws Exception {
-		//return SUCCESS;
+		return SUCCESS;
 	}
-	
 */	
+	
 	public String loginRegisteredUser(){
 		try{
 		
@@ -45,11 +45,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 				
 				session.put("userName", loginInfo.getLoginName());
 				session.put("logined","true");
-				return SUCCESS;
+				return "success";
 			}	
 			else {
 				
-				return LOGIN;
+				return "login";
 				
 			}	
 			
@@ -60,13 +60,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		
 		else{
 			addActionError("A felhasználónév vagy jelszó helytelen");
-			return LOGIN;
+			return "login";
 		}
 			
 		}
 		catch(Exception e){
 			
-			return LOGIN;
+			return "login";
 		}
 	}
 	
@@ -91,7 +91,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	
 	public String logined(){
 		
-		return SUCCESS;
+		return "success";
 	}
 	
 	public String logOut(){
@@ -102,7 +102,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		session.remove("logined");
 		session.remove("fullName");
 		addActionMessage("Sikeresen kijelentkeztél");
-		return LOGIN;
+		return "login";
 	}
 	
 	public Map<String,Object> getSession(){
@@ -126,10 +126,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	public String getLoginedUser(){
-		
-		return (String) session.get("userName");
-	}
 	
 	
 	

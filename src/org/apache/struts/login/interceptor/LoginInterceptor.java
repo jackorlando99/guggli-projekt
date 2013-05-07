@@ -23,12 +23,12 @@ public class LoginInterceptor implements Interceptor {
 	public String intercept (ActionInvocation invocation) throws Exception{
 		Map<String,Object> sessionAttributes = invocation.getInvocationContext().getSession();
 		
-		if ( sessionAttributes == null || sessionAttributes.get("loginId") == null ){
+		if ( sessionAttributes == null || sessionAttributes.get("userName") == null ){
 			
 			return "login";
 		}
 		else {
-			if ( ! ((String) sessionAttributes.get("loginId")).equals(null) ){
+			if ( ! ((String) sessionAttributes.get("userName")).equals(null) ){
 				return invocation.invoke();
 			}
 			else

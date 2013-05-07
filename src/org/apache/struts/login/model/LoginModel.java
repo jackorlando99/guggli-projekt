@@ -80,7 +80,4 @@ public class LoginModel {
 		return this.pwhash;
 	}
 	
-	public LoginModel getLoginModel(){
-		return this;
-	}
 }

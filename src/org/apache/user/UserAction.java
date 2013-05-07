@@ -10,21 +10,21 @@ import org.apache.struts2.interceptor.SessionAware;
 public class UserAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 89432748932L;
 	
-	private UserModel userModel ;
+	private UserModel userModel = null;
 	private Map<String,Object> session;
 
 
 	
 	@Override
-	public String execute(){
+	public String execute() throws Exception {
 		
-		if ( userModel == null ){
+		if ( userModel == null )
 			userModel = new UserModel( (String) session.get("userName") );
 			session.put("fullName",getFullName());
 			session.put("userId",getUserId());
 			session.put("email",getEmail());
-		}	
-		return SUCCESS;
+			
+		return "success";
 	}
 	
 	public int getUserId(){

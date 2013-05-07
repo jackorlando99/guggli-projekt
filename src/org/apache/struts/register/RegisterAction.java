@@ -5,7 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class RegisterAction extends ActionSupport {
 
-	private static final long serialVersionUID = 123456789L;
+	private static final long serialVersionUID = 12345678974632123L;
 	private RegisterModel userReg;
 	
 	@Override
